@@ -1,0 +1,62 @@
+config:
+  credentials: []
+  project_repos:
+    git.man.poznan.pl/stash/scm/eosc-rs/nearest-neighbor-finder-training-module:
+      branch: master
+      repo: https://git.man.poznan.pl/stash/scm/eosc-rs/nearest-neighbor-finder-training-module.git
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: release/1.7.7
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      git.man.poznan.pl/stash/scm/eosc-rs/nearest-neighbor-finder-training-module git:
+        commands:
+        - /usr/bin/env sh .sqa/script.seedy-maroon-bordeaux.sh
+        container: qc.acc_gimpy-ecru-centipede
+  QC.Doc:
+    repos:
+      git.man.poznan.pl/stash/scm/eosc-rs/nearest-neighbor-finder-training-module find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.flabby-ochre-dane.sh
+        container: qc.doc_baggy-turquoise-capuchin
+      git.man.poznan.pl/stash/scm/eosc-rs/nearest-neighbor-finder-training-module git:
+        commands:
+        - /usr/bin/env sh .sqa/script.shabby-rose-buffalo.sh
+        container: qc.doc_stuffy-khaki-foxhound
+      git.man.poznan.pl/stash/scm/eosc-rs/nearest-neighbor-finder-training-module markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.slaphappy-bistre-barb.sh
+        container: qc.doc_sleepy-orange-turtle
+  QC.Lic:
+    repos:
+      git.man.poznan.pl/stash/scm/eosc-rs/nearest-neighbor-finder-training-module licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.fuzzy-yellow-forest.sh
+        container: qc.lic_slimy-lemon-donkey
+  QC.Sec:
+    repos:
+      git.man.poznan.pl/stash/scm/eosc-rs/nearest-neighbor-finder-training-module bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.stuffy-tan-insect.sh
+        container: qc.sec_zippy-cinnamon-barb
+  QC.Sty:
+    repos:
+      git.man.poznan.pl/stash/scm/eosc-rs/nearest-neighbor-finder-training-module flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.frumpy-orchid-chamois.sh
+        container: qc.sty_lanky-yellow-starfish
+      git.man.poznan.pl/stash/scm/eosc-rs/nearest-neighbor-finder-training-module hadolint:
+        commands:
+        - /usr/bin/env sh .sqa/script.sleazy-russet-ray.sh
+        container: qc.sty_zippy-cyan-duck
+  QC.Ver:
+    repos:
+      git.man.poznan.pl/stash/scm/eosc-rs/nearest-neighbor-finder-training-module get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.squirrely-khaki-armadillo.sh
+        container: qc.ver_ready-gold-zebu
+timeout: 5400
